@@ -1,6 +1,10 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -52,6 +56,24 @@ public class FinancialTracker {
     }
 
     public static void loadTransactions(String fileName) {
+        File file = new File(fileName);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println("File not found; creating new file.");
+            } catch (Exception e) {
+                System.out.println("Could not create file.");
+            }
+        } else {
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    processLine(line);
+                }
+            } catch (Exception e) {
+                System.out.println("Error reading file.");
+            }
+        }
         // This method should load transactions from a file with the given file name.
         // If the file does not exist, it should be created.
         // The transactions should be stored in the `transactions` ArrayList.
@@ -60,6 +82,23 @@ public class FinancialTracker {
         // For example: 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
         // After reading all the transactions, the file should be closed.
         // If any errors occur, an appropriate error message should be displayed.
+    }
+    public static void processLine(String line) {
+        String[] fields = line.split("\\|");
+
+        try {
+            LocalDate date = LocalDate.parse(fields[0], DATE_FORMATTER);
+            LocalTime time = LocalTime.parse(fields[1], TIME_FORMATTER);
+            String description = fields[2];
+            String vendor = fields[3];
+            double amount = Double.parseDouble(fields[4]);
+
+            Transaction transaction = new Transaction(date, time, description, vendor, amount);
+
+            transactions.add(transaction);
+        } catch (Exception e) {
+            System.out.println("Processing Error.");
+        }
     }
 
     private static void addDeposit(Scanner scanner) {
