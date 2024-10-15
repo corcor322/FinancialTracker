@@ -118,17 +118,21 @@ public class FinancialTracker {
         }
 
 
-        System.out.println("Enter the time of the transaction you would like to add. (HH:mm:ss)");
-        String timeInput = scanner.nextLine();
-
-        //Validate Time input
 
         LocalTime time = null;
-        try {
-            time = LocalTime.parse(timeInput, TIME_FORMATTER);
-        } catch (Exception e) {
-            System.out.println("Invalid time format. Please try again.");
+        while (time == null) {
+            System.out.println("Enter the time of the transaction you would like to add. (HH:mm:ss)");
+            String timeInput = scanner.nextLine();
+
+            //Validate Time input
+
+            try {
+                time = LocalTime.parse(timeInput, TIME_FORMATTER);
+            } catch (Exception e) {
+                System.out.println("Invalid time format. Please try again.");
+            }
         }
+
 
         System.out.println("Enter the description of the transaction you would like to add. (Ex. 'Student Loan Payment.')");
         String description = scanner.nextLine();
