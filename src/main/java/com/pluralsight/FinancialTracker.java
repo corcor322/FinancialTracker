@@ -102,17 +102,54 @@ public class FinancialTracker {
     }
 
     private static void addDeposit(Scanner scanner) {
-        System.out.println("Enter the date of the transaction you would like to add. (yyyy-MM-dd): ");
-        LocalDate date = LocalDate.parse(scanner.nextLine());
+        LocalDate date = null;
+        while (date == null) {
+            System.out.println("Enter the date of the transaction you would like to add. (yyyy-MM-dd): ");
+            String input = scanner.nextLine();
+
+            //Validate Date input
+
+
+            try {
+                date = LocalDate.parse(input, DATE_FORMATTER);
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please try again.");
+            }
+        }
+
+
         System.out.println("Enter the time of the transaction you would like to add. (HH:mm:ss)");
-        LocalTime time = LocalTime.parse(scanner.nextLine());
+        String timeInput = scanner.nextLine();
+
+        //Validate Time input
+
+        LocalTime time = null;
+        try {
+            time = LocalTime.parse(timeInput, TIME_FORMATTER);
+        } catch (Exception e) {
+            System.out.println("Invalid time format. Please try again.");
+        }
+
         System.out.println("Enter the description of the transaction you would like to add. (Ex. 'Student Loan Payment.')");
         String description = scanner.nextLine();
+
         System.out.println("Enter the name of the vendor for the transaction you would like to add.");
         String vendor = scanner.nextLine();
-        System.out.println("Enter the amount of the transaction you would like to add in dollars and cents. (Ex. '19.95')");
-        double amount = scanner.nextDouble();
 
+        System.out.println("Enter the amount of the transaction you would like to add in dollars and cents. (Ex. '19.95')");
+        String amountInput = scanner.nextLine();
+        //Validate double
+        double amount = 0;
+        try {
+            amount = Double.parseDouble(amountInput);
+            if (amount <= 0) {
+                throw new IllegalArgumentException("Amount must be positive.");
+            }
+        } catch (NumberFormatException e) {
+                System.out.println("Invalid amount. Please enter a number.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
