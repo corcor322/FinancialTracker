@@ -65,7 +65,7 @@ public class FinancialTracker {
                 System.out.println("Could not create file.");
             }
         } else {
-            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader("transactions.csv"))) {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     processLine(line);
@@ -102,6 +102,18 @@ public class FinancialTracker {
     }
 
     private static void addDeposit(Scanner scanner) {
+        System.out.println("Enter the date of the transaction you would like to add. (yyyy-MM-dd): ");
+        LocalDate date = LocalDate.parse(scanner.nextLine());
+        System.out.println("Enter the time of the transaction you would like to add. (HH:mm:ss)");
+        LocalTime time = LocalTime.parse(scanner.nextLine());
+        System.out.println("Enter the description of the transaction you would like to add. (Ex. 'Student Loan Payment.')");
+        String description = scanner.nextLine();
+        System.out.println("Enter the name of the vendor for the transaction you would like to add.");
+        String vendor = scanner.nextLine();
+        System.out.println("Enter the amount of the transaction you would like to add in dollars and cents. (Ex. '19.95')");
+        double amount = scanner.nextDouble();
+
+
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
         // The amount should be a positive number.
@@ -122,7 +134,7 @@ public class FinancialTracker {
         while (running) {
             System.out.println("Ledger");
             System.out.println("Choose an option:");
-            System.out.println("A) A`ll");
+            System.out.println("A) All");
             System.out.println("D) Deposits");
             System.out.println("P) Payments");
             System.out.println("R) Reports");
