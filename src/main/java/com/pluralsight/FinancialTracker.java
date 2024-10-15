@@ -163,12 +163,67 @@ public class FinancialTracker {
 
 
         private static void addPayment (Scanner scanner){
-            // This method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
-            // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
+        LocalDate date = null;
+        while (date == null) {
+            System.out.println("Enter the date of the transaction you would like to add. (yyyy-MM-dd): ");
+            String dateInput = scanner.nextLine();
+
+            try {
+                date = LocalDate.parse(dateInput, DATE_FORMATTER);
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please try again.");
+            }
+        }
+
+            // Get the time of the transaction
+            LocalTime time = null;
+            while (time == null) {
+                System.out.println("Enter the time of the transaction you would like to add. (HH:mm:ss)");
+                String timeInput = scanner.nextLine();
+
+                try {
+                    time = LocalTime.parse(timeInput, TIME_FORMATTER);
+                } catch (Exception e) {
+                    System.out.println("Invalid time format. Please try again.");
+                }
+            }
+
+            // Get the description of the transaction
+            System.out.println("Enter the description of the transaction you would like to add. (Ex. 'Student Loan Payment.')");
+            String description = scanner.nextLine();
+
+            // Get the vendor name for the transaction
+            System.out.println("Enter the name of the vendor for the transaction you would like to add.");
+            String vendor = scanner.nextLine();
+
+            // Get the amount of the transaction and validate
+            double amount = 0;
+            while (amount == 0) {
+                System.out.println("Enter the amount of the transaction you would like to add in dollars and cents. (Ex. '19.95')");
+                String amountInput = scanner.nextLine();
+
+                try {
+                    amount = Double.parseDouble(amountInput);
+                    if (amount <= 0) {
+                        throw new IllegalArgumentException("Amount must be positive.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid amount. Please enter a number.");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            // Transaction is successfully added
+            System.out.println("Transaction added successfully!");
+            // You can continue with additional logic here
+        }
+            // DONEThis method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
+            // DONEThe user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
             // The amount received should be a positive number then transformed to a negative number.
             // After validating the input, a new `Transaction` object should be created with the entered values.
             // The new payment should be added to the `transactions` ArrayList.
-        }
+
 
         private static void ledgerMenu (Scanner scanner){
             boolean running = true;
