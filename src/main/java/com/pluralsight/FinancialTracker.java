@@ -1,8 +1,6 @@
 package com.pluralsight;
 //TODO: add buffered writer to add user input to csv file; Reports menu
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -74,6 +72,7 @@ public class FinancialTracker {
                 System.out.println("Error reading file.");
             }
         }
+
         // DONEThis method should load transactions from a file with the given file name.
         // DONEIf the file does not exist, it should be created.
         // The transactions should be stored in the `transactions` ArrayList.
@@ -158,11 +157,16 @@ public class FinancialTracker {
         // Transaction is successfully added
         System.out.println("Transaction added successfully!");
         // You can continue with additional logic here
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
+        transactions.add(transaction);
+
+        writeToFile(transaction);
     }
 
 
 
         private static void addPayment (Scanner scanner){
+
         LocalDate date = null;
         while (date == null) {
             System.out.println("Enter the date of the transaction you would like to add. (yyyy-MM-dd): ");
@@ -219,6 +223,23 @@ public class FinancialTracker {
             // Transaction is successfully added
             System.out.println("Transaction added successfully!");
             // You can continue with additional logic here
+        }
+        public static void writeToFile (Transaction transaction) {
+            try {
+                BufferedWriter myWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
+
+                myWriter.write(
+                        transaction.getDate().toString() + "," +
+                            transaction.getTime().toString() + "," +
+                            transaction.getDescription() + "," +
+                            transaction.getVendor() + "," +
+                            transaction.getAmount() + "\n"
+
+                );
+            } catch (Exception e) {
+                System.out.println("Error writing to file.");
+            }
+
         }
             // DONEThis method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
             // DONEThe user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
