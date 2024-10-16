@@ -222,7 +222,7 @@ public class FinancialTracker {
         }
             // DONEThis method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
             // DONEThe user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-            // The amount received should be a positive number then transformed to a negative number.
+            // DONEThe amount received should be a positive number then transformed to a negative number.
             // After validating the input, a new `Transaction` object should be created with the entered values.
             // The new payment should be added to the `transactions` ArrayList.
 

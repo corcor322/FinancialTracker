@@ -1,8 +1,10 @@
-# Project Title
+# Financial Tracker
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+This java application tracks ingoing and outgoing finances. It functions as an electronic version of a checkbook ledger, and it's target audience is your everyday worker. This solves a few problems,
+including misplacing a physical checkbook, budget mismanagement, and tracking the flow of money over different financial apps that do not integrate with each other, such as a couple with individual accounts
+tracking their expenses as a house.
 
 ![Class Diagram](path/to/your/class_diagram.png)
 
@@ -29,8 +31,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 1. Open IntelliJ IDEA.
 2. Select "Open" and navigate to the directory where you cloned or downloaded the project.
 3. After the project opens, wait for IntelliJ to index the files and set up the project.
-4. Find the main class with the `public static void main(String[] args)` method.
-5. Right-click on the file and select 'Run 'YourMainClassName.main()'' to start the application.
+4. Find the main class with the `public static void main(String[] args)` method. This is in the class titled "FinancialTracker".
+5. Right-click on the file and select 'Run 'FinancialTracker.main()'' to start the application.
 
 ## Technologies Used
 
@@ -59,12 +61,11 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- **Raymond Maroun** - Contributed skeleton code for initial commit.
+
 
 ## Thanks
 
-Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Many thanks to Raymond, my Java bootcamp instructor, for being on standby to help with issues in my code and navigating git/github.
+- Special thanks to Carmen and Aaron for their motivation, advice, and helping me find the curly brace in the haystack.
