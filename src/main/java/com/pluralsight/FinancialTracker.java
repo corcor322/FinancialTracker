@@ -1,8 +1,9 @@
 package com.pluralsight;
-//TODO: add buffered writer to add user input to csv file; Reports menu
+//TODO: Reports menu
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -358,6 +359,8 @@ public class FinancialTracker {
                 String input = scanner.nextLine().trim();
 
                 switch (input) {
+                    //LocalDate currentDate = LocalDate.now();
+                    //Month currentMonth = currentDate.getMonth();
                     case "1":
                         // Generate a report for all transactions within the current month,
                         // including the date, time, description, vendor, and amount for each transaction.

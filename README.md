@@ -12,8 +12,13 @@ tracking their expenses as a house.
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to add and track deposits and payments to keep my account up to date.
+- As a user, I want a menu with clear directions so that I can easily navigate where I need to go.
+- As a user, I want the ability to filter my ledger to only show deposits or payments so that I can better track my money.
+- As a user, I want the ability to navigate in and out of different parts of the menu without closing the application so that I can save time and effort.
+- As a user, I want the ability to view a list of past transactions to moniotr my spending and income.
+- As a user, I want the ability to generate reports on my spending and income at a specific vendor or timeframe so that I can make clear decisions about my budget.
+- As a user, I want the ability to save my added transactions so that they are still there when I exit and restart the application.
 
 ## Setup
 
@@ -36,8 +41,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java: Java 17
+
 
 ## Demo
 
@@ -47,17 +52,18 @@ Include screenshots or GIFs that show your application in action. Use tools like
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
+Additional work that could be done with this project:
+-The ability to perform custom searches based on all fields
+-Adding the ability to leave fields blank when creating entries
+-Not including seconds in the time field
+-Adding a GUI
 
 ## Resources
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [Java Create and Write to Files](https://www.w3schools.com/java/java_files_create.asp)
+- [Java Time LocalDate Class](https://www.tutorialspoint.com/javatime/javatime_localdate.htm)
 
 ## Team Members
 
