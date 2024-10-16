@@ -223,6 +223,10 @@ public class FinancialTracker {
             // Transaction is successfully added
             System.out.println("Transaction added successfully!");
             // You can continue with additional logic here
+            Transaction transaction = new Transaction(date, time, description, vendor, amount);
+            transactions.add(transaction);
+
+            writeToFile(transaction);
         }
         public static void writeToFile (Transaction transaction) {
             try {
