@@ -74,8 +74,8 @@ public class FinancialTracker {
                 System.out.println("Error reading file.");
             }
         }
-        // This method should load transactions from a file with the given file name.
-        // If the file does not exist, it should be created.
+        // DONEThis method should load transactions from a file with the given file name.
+        // DONEIf the file does not exist, it should be created.
         // The transactions should be stored in the `transactions` ArrayList.
         // Each line of the file represents a single transaction in the following format:
         // <date>|<time>|<description>|<vendor>|<amount>
@@ -263,6 +263,18 @@ public class FinancialTracker {
         }
 
         private static void displayLedger () {
+            System.out.printf("%-15s %-10s %-30s %-20s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+            System.out.println("--------------------------------------------------------------------------------------");
+
+            for (Transaction transaction: transactions) {
+                System.out.printf("%-15s %-10s %-30s %-20s %10.2f%n",
+                    transaction.getDate().toString(),
+                    transaction.getTime().toString(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount()
+                    );
+            }
             // This method should display a table of all transactions in the `transactions` ArrayList.
             // The table should have columns for date, time, description, vendor, and amount.
         }
