@@ -364,12 +364,13 @@ public class FinancialTracker {
 
             switch (input) {
                 case "1":
-                    LocalDate startOfMonth =LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+                    LocalDate startOfMonth =LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
                     LocalDate today = LocalDate.now();
                     filterTransactionsByDate(startOfMonth, today);
                     break;
                     // Generate a report for all transactions within the current month,
                     // including the date, time, description, vendor, and amount for each transaction.
+
                 case "2":
                     LocalDate startOfPreviousMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
                     LocalDate endOfPreviousMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
@@ -377,11 +378,20 @@ public class FinancialTracker {
                     break;
                     // Generate a report for all transactions within the previous month,
                     // including the date, time, description, vendor, and amount for each transaction.
+
                 case "3":
+                    LocalDate startOfYear = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+                    LocalDate todayCase3 = LocalDate.now();
+                    filterTransactionsByDate(startOfYear, todayCase3);
+                    break;
                     // Generate a report for all transactions within the current year,
                     // including the date, time, description, vendor, and amount for each transaction.
 
                 case "4":
+                    LocalDate startOfPreviousYear = LocalDate.now().minusYears(1).with(TemporalAdjusters.firstDayOfYear());
+                    LocalDate endOfPreviousYear = LocalDate.now().minusYears(1).with(TemporalAdjusters.lastDayOfYear());
+                    filterTransactionsByDate(startOfPreviousYear, endOfPreviousYear);
+                    break;
                     // Generate a report for all transactions within the previous year,
                     // including the date, time, description, vendor, and amount for each transaction.
                 case "5":
