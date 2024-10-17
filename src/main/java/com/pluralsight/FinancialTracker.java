@@ -1,5 +1,5 @@
 package com.pluralsight;
-//TODO: Reports menu
+//TODO: finalize code, fix write to file method
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,8 +12,6 @@ import java.util.Scanner;
 
 
 public class FinancialTracker {
-
-
     private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
@@ -26,6 +24,7 @@ public class FinancialTracker {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
+        //Main menu
         while (running) {
             System.out.println("Welcome to TransactionApp");
             System.out.println("Choose an option:");
@@ -159,9 +158,8 @@ public class FinancialTracker {
             }
         }
 
-        // Transaction is successfully added
         System.out.println("Transaction added successfully!");
-        // You can continue with additional logic here
+        // Create new Transaction object
         Transaction transaction = new Transaction(date, time, description, vendor, amount);
         transactions.add(transaction);
 
@@ -225,14 +223,14 @@ public class FinancialTracker {
 
         }
 
-        // Transaction is successfully added
         System.out.println("Transaction added successfully!");
-        // You can continue with additional logic here
+        // Create new Transaction object
         Transaction transaction = new Transaction(date, time, description, vendor, amount);
         transactions.add(transaction);
 
         writeToFile(transaction);
     }
+    // Add deposits and payments input by user to file
     public static void writeToFile (Transaction transaction) {
         try {
             BufferedWriter myWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
@@ -293,6 +291,7 @@ public class FinancialTracker {
     }
 
     private static void displayLedger () {
+        //formatting ledger table
         System.out.printf("%-15s %-10s %-30s %-20s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("--------------------------------------------------------------------------------------");
 
