@@ -1,5 +1,5 @@
 package com.pluralsight;
-//TODO: finalize code, fix write to file method
+//TODO: have a good presentation :)
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
