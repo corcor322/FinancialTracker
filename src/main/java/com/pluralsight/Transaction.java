@@ -58,6 +58,16 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public String toString() {
+        return String.format(
+                "Date: %s, Time: %s, Description: %s, Vendor: %s, Amount: %.2f",
+                date.toString(),
+                time.toString(),
+                description,
+                vendor,
+                amount);
+    }
+
 }
 
 
