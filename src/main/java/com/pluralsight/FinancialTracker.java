@@ -3,16 +3,14 @@ package com.pluralsight;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class FinancialTracker {
-    private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private static ArrayList<Transaction> transactions = new ArrayList<>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIME_FORMAT = "HH:mm:ss";
@@ -57,25 +55,38 @@ public class FinancialTracker {
         scanner.close();
     }
 
-    public static void loadTransactions(String fileName) {
-        File file = new File(fileName);
+    public static void loadTransactions(String filePath) {
+        File file = new File(filePath);
         if (!file.exists()) {
             try {
                 file.createNewFile();
                 System.out.println("File not found; creating new file.");
             } catch (Exception e) {
-                System.out.println("Could not create file.");
+                System.out.println("Could not create file: " + e.getMessage());
             }
         } else {
-            try (BufferedReader bufferedReader = new BufferedReader(new FileReader("transactions.csv"))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
                 String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    processLine(line);
+                while ((line = reader.readLine()) != null) {
+                    String[] values = line.split("\\|");
+                    if (values.length == 5) {
+                        Transaction transaction = new Transaction(
+                                LocalDate.parse(values[0], DATE_FORMATTER),
+                                LocalTime.parse(values[1], TIME_FORMATTER),
+                                values[2],
+                                values[3],
+                                Double.parseDouble(values[4])
+                        );
+                        transactions.add(transaction);
+                    } else {
+                        System.out.println("Invalid line format: " + line);
+                    }
                 }
             } catch (Exception e) {
-                System.out.println("Error reading file.");
+                System.out.println("Error reading file: " + e.getMessage());
             }
         }
+    }
 
         // DONEThis method should load transactions from a file with the given file name.
         // DONEIf the file does not exist, it should be created.
@@ -85,7 +96,7 @@ public class FinancialTracker {
         // For example: 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
         // After reading all the transactions, the file should be closed.
         // If any errors occur, an appropriate error message should be displayed.
-    }
+
 
     public static void processLine(String line) {
         String[] fields = line.split("\\|");
@@ -231,10 +242,8 @@ public class FinancialTracker {
         writeToFile(transaction);
     }
     // Add deposits and payments input by user to file
-    public static void writeToFile (Transaction transaction) {
-        try {
-            BufferedWriter myWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
-
+    public static void writeToFile(Transaction transaction) {
+        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter("transactions.csv", true))) {
             myWriter.write(
                     transaction.getDate().toString() + "|" +
                             transaction.getTime().toString() + "|" +
@@ -242,15 +251,14 @@ public class FinancialTracker {
                             transaction.getVendor() + "|" +
                             transaction.getAmount() + "\n"
             );
-            myWriter.close();
-        } catch (Exception e) {
-            System.out.println("Error writing to file.");
-        }
 
+        } catch (Exception e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
     }
     // DONEThis method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
     // DONEThe user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-    // DONEThe amount received should be a positive number then transformed to a negative number.
+    // DONEThe amount received should be a positive number, then transformed to a negative number.
     // After validating the input, a new `Transaction` object should be created with the entered values.
     // The new payment should be added to the `transactions` ArrayList.
 
@@ -424,7 +432,7 @@ public class FinancialTracker {
 
         for (Transaction transaction : transactions) {
             if (transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(endDate)) {
-                System.out.println(transaction.toString());
+                System.out.println(transaction);
                 found = true;
             }
         }
@@ -445,7 +453,7 @@ public class FinancialTracker {
 
         for (Transaction transaction : transactions) {
             if (transaction.getVendor().equalsIgnoreCase(vendor)) {
-                System.out.println(transaction.toString());
+                System.out.println(transaction);
                 found = true;
 
             }
