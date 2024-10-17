@@ -236,13 +236,13 @@ public class FinancialTracker {
             BufferedWriter myWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
 
             myWriter.write(
-                    transaction.getDate().toString() + "," +
-                            transaction.getTime().toString() + "," +
-                            transaction.getDescription() + "," +
-                            transaction.getVendor() + "," +
+                    transaction.getDate().toString() + "|" +
+                            transaction.getTime().toString() + "|" +
+                            transaction.getDescription() + "|" +
+                            transaction.getVendor() + "|" +
                             transaction.getAmount() + "\n"
-
             );
+            myWriter.close();
         } catch (Exception e) {
             System.out.println("Error writing to file.");
         }
