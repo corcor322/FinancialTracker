@@ -5,10 +5,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static java.util.concurrent.LinkedTransferQueue.NOW;
+
 public class FinancialTracker {
+
 
     private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private static final String FILE_NAME = "transactions.csv";
@@ -359,8 +364,8 @@ public class FinancialTracker {
                 String input = scanner.nextLine().trim();
 
                 switch (input) {
-                    //LocalDate currentDate = LocalDate.now();
-                    //Month currentMonth = currentDate.getMonth();
+                    filterTransactionsByDate(NOW.with(TemporalAdjusters.firstDayOfMonth()).toLocalDate(),
+                            LocalDate.from(NOW));
                     case "1":
                         // Generate a report for all transactions within the current month,
                         // including the date, time, description, vendor, and amount for each transaction.
@@ -393,6 +398,19 @@ public class FinancialTracker {
             // The method loops through the transactions list and checks each transaction's date against the date range.
             // Transactions that fall within the date range are printed to the console.
             // If no transactions fall within the date range, the method prints a message indicating that there are no results.
+
+            System.out.println("Transactions between " + startDate + "-" + endDate + ": \n");
+            boolean found = false;
+
+            for (Transaction transaction : transactions) {
+                if (transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(endDate)) {
+                System.out.println(transaction.toString());
+                found = true;
+                }
+            }
+            if (!found) {
+                System.out.println("No matching entries were found.");
+            }
         }
 
         private static void filterTransactionsByVendor (String vendor){
@@ -401,5 +419,19 @@ public class FinancialTracker {
             // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
             // Transactions with a matching vendor name are printed to the console.
             // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
+
+            System.out.println("Transactions involving '" + vendor + "' \n");
+            boolean found = false;
+
+            for (Transaction transaction : transactions) {
+                if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                    System.out.println(transaction.toString());
+                    found = true;
+
+                }
+            }
+            if (!found) {
+                System.out.println("No matching entries were found.");
+            }
         }
     }
