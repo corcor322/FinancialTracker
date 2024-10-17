@@ -6,8 +6,6 @@ This java application tracks ingoing and outgoing finances. It functions as an e
 including misplacing a physical checkbook, budget mismanagement, and tracking the flow of money over different financial apps that do not integrate with each other, such as a couple with individual accounts
 tracking their expenses as a house.
 
-![Class Diagram](path/to/your/class_diagram.png)
-
 ## User Stories
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."

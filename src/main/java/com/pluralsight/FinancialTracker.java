@@ -371,7 +371,7 @@ public class FinancialTracker {
 
             switch (input) {
                 case "1":
-                    LocalDate startOfMonth =LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+                    LocalDate startOfMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
                     LocalDate today = LocalDate.now();
                     filterTransactionsByDate(startOfMonth, today);
                     break;
@@ -431,7 +431,7 @@ public class FinancialTracker {
         boolean found = false;
 
         for (Transaction transaction : transactions) {
-            if (transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(endDate)) {
+            if ((transaction.getDate().isAfter(startDate) || transaction.getDate().equals(startDate)) && (transaction.getDate().isBefore(endDate)) || transaction.getDate().equals(endDate)) {
                 System.out.println(transaction);
                 found = true;
             }
