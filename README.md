@@ -44,24 +44,33 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
+Here are some screenshots of the program in action:
 
-![Application Screenshot](path/to/your/screenshot.png)
+![Main Menu](src/main/resources/mainMenu.png)
+![Add Deposit](src/main/resources/addDeposit.png)
+![Invalid Format](src/main/resources/invalidFormat.png)
+![Ledger Menu](src/main/resources/ledgerMenu.png)
+![Reports](src/main/resources/reports.png)
 
 ## Future Work
 
 Additional work that could be done with this project:
 -The ability to perform custom searches based on all fields
+-The ability to perform searches with partial matches for key terms
 -Adding the ability to leave fields blank when creating entries
 -Not including seconds in the time field
+-Cleaning up code with better logic. I'm sure there's a better way to implement some of these methods.
 -Adding a GUI
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
+In addition to the material covered in class, the following tutorials and documentation were a great help to me:
 
 - [Java Create and Write to Files](https://www.w3schools.com/java/java_files_create.asp)
 - [Java Time LocalDate Class](https://www.tutorialspoint.com/javatime/javatime_localdate.htm)
+- [Temporal Adjuster](https://docs.oracle.com/javase/tutorial/datetime/iso/adjusters.html)
+- [Compare Two LocalDate Instances in Java](https://howtodoinjava.com/java/date-time/compare-localdates/#:~:text=LocalDate%20equals()%20Method,can%20use%20equals()%20method.)
+
 
 ## Team Members
 
@@ -72,4 +81,5 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 
 - Many thanks to Raymond, my Java bootcamp instructor, for being on standby to help with issues in my code and navigating git/github.
-- Special thanks to Carmen and Aaron for their motivation, advice, and helping me find the curly brace in the haystack.
+- A big thank you to Cameron for helping me debug my writeToFile method.
+- Special thanks to Carmen and Aaron for their motivation, advice, help finding curly braces, and teaching me about the temporal adjuster.
