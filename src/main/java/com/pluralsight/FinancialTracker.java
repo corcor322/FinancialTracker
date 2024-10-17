@@ -88,16 +88,6 @@ public class FinancialTracker {
         }
     }
 
-        // DONEThis method should load transactions from a file with the given file name.
-        // DONEIf the file does not exist, it should be created.
-        // The transactions should be stored in the `transactions` ArrayList.
-        // Each line of the file represents a single transaction in the following format:
-        // <date>|<time>|<description>|<vendor>|<amount>
-        // For example: 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
-        // After reading all the transactions, the file should be closed.
-        // If any errors occur, an appropriate error message should be displayed.
-
-
     public static void processLine(String line) {
         String[] fields = line.split("\\|");
 
@@ -256,12 +246,6 @@ public class FinancialTracker {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
-    // DONEThis method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
-    // DONEThe user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-    // DONEThe amount received should be a positive number, then transformed to a negative number.
-    // After validating the input, a new `Transaction` object should be created with the entered values.
-    // The new payment should be added to the `transactions` ArrayList.
-
 
     private static void ledgerMenu (Scanner scanner){
         boolean running = true;
@@ -312,8 +296,8 @@ public class FinancialTracker {
                     transaction.getAmount()
             );
         }
-        // This method should display a table of all transactions in the `transactions` ArrayList.
-        // The table should have columns for date, time, description, vendor, and amount.
+        // Display a table of all transactions in the `transactions` ArrayList.
+        // Columns for date, time, description, vendor, and amount.
     }
 
     private static void displayDeposits () {
@@ -332,8 +316,8 @@ public class FinancialTracker {
             }
 
         }
-        // DONEThis method should display a table of all deposits in the `transactions` ArrayList.
-        // DONEThe table should have columns for date, time, description, vendor, and amount.
+        // Display a table of all deposits in the `transactions` ArrayList.
+        // Columns for date, time, description, vendor, and amount.
     }
 
     private static void displayPayments () {
@@ -350,8 +334,8 @@ public class FinancialTracker {
                         transaction.getAmount()
                 );
             }
-            // This method should display a table of all payments in the `transactions` ArrayList.
-            // The table should have columns for date, time, description, vendor, and amount.
+            // Display a table of all payments in the `transactions` ArrayList.
+            // Columns for date, time, description, vendor, and amount.
         }
     }
 
@@ -375,32 +359,28 @@ public class FinancialTracker {
                     LocalDate today = LocalDate.now();
                     filterTransactionsByDate(startOfMonth, today);
                     break;
-                    // Generate a report for all transactions within the current month,
-                    // including the date, time, description, vendor, and amount for each transaction.
+                    // Generate a report for all transactions within the current month
 
                 case "2":
                     LocalDate startOfPreviousMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
                     LocalDate endOfPreviousMonth = LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
                     filterTransactionsByDate(startOfPreviousMonth, endOfPreviousMonth);
                     break;
-                    // Generate a report for all transactions within the previous month,
-                    // including the date, time, description, vendor, and amount for each transaction.
+                    // Generate a report for all transactions within the previous month
 
                 case "3":
                     LocalDate startOfYear = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
                     LocalDate todayCase3 = LocalDate.now();
                     filterTransactionsByDate(startOfYear, todayCase3);
                     break;
-                    // Generate a report for all transactions within the current year,
-                    // including the date, time, description, vendor, and amount for each transaction.
+                    // Generate a report for all transactions within the current year
 
                 case "4":
                     LocalDate startOfPreviousYear = LocalDate.now().minusYears(1).with(TemporalAdjusters.firstDayOfYear());
                     LocalDate endOfPreviousYear = LocalDate.now().minusYears(1).with(TemporalAdjusters.lastDayOfYear());
                     filterTransactionsByDate(startOfPreviousYear, endOfPreviousYear);
                     break;
-                    // Generate a report for all transactions within the previous year,
-                    // including the date, time, description, vendor, and amount for each transaction.
+                    // Generate a report for all transactions within the previous year
 
                 case "5":
                     System.out.println("Enter vendor name: ");
