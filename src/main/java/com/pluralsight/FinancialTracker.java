@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class FinancialTracker {
-    private static ArrayList<Transaction> transactions = new ArrayList<>();
+    private static final ArrayList<Transaction> transactions = new ArrayList<>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIME_FORMAT = "HH:mm:ss";

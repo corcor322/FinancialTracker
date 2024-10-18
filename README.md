@@ -55,12 +55,12 @@ Here are some screenshots of the program in action:
 ## Future Work
 
 Additional work that could be done with this project:
--The ability to perform custom searches based on all fields
--The ability to perform searches with partial matches for key terms
--Adding the ability to leave fields blank when creating entries
--Not including seconds in the time field
--Cleaning up code with better logic. I'm sure there's a better way to implement some of these methods.
--Adding a GUI
+- The ability to perform custom searches based on all fields
+- The ability to perform searches with partial matches for key terms
+- Adding the ability to leave fields blank when creating entries
+- Not including seconds in the time field
+- Cleaning up code with better logic. I'm sure there's a better way to implement some of these methods.
+- Adding a GUI
 
 ## Resources
 
